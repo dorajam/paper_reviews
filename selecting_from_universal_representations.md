@@ -56,8 +56,7 @@ In the latter's case, they follow the Meta-Dataset original setup, and allow K t
 
 Their observations are the following:
 - training on ImageNet only yields the best results on 8/13 datasets on the single-domain tasks (w/o SUR)
-- SUR outperforms 3 baselines: 1. pretrained single feature extractor on ImageNet, 2. pretrained single feature extractor on 8 datasets from Meta-Dataset ,
-3. multiple feature extractors with lambda=1 for all features
+- SUR outperforms 3 baselines: 1. pretrained single feature extractor on ImageNet, 2. pretrained single feature extractor on 8 datasets from Meta-Dataset , 3. multiple feature extractors with lambda=1 for all features
 - features selected by SUR are sparse, and correspond to feature extractors that come from visually similar domains.
 
 ## Personal notes

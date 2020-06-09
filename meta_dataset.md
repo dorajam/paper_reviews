@@ -20,7 +20,7 @@ They propose Meta-Dataset that is:
 
 ### Dataset
 Meta-Dataset contains:
-- ILSVRC-2012/ImageNet ("is_a" type of ontology is available)
+- ILSVRC-2012/ImageNet
 - Omniglot
 - Aircraft
 - CUB-200-2011
@@ -32,7 +32,7 @@ Meta-Dataset contains:
 - MSCOCO (reserved for evaluation only)
 
 ### Class structure
-Ontologies are available for ImageNet and OmniGlot. For ImageNet, we take 1000 classes (leaf nodes) and split it into three subgraphs for training, validation and testing. This ensures no semantic overlap between training/validation/testing.
+Ontologies are available for ImageNet and OmniGlot. For ImageNet, they take 1000 classes (leaf nodes) and split it into three subgraphs for training, validation and testing. This ensures no semantic overlap between training/validation/testing.
 For Omniglot, they use a two-layer class hierarchy of alphabets and characters.
 
 ### Episode Creating
@@ -43,10 +43,10 @@ In Meta-Dataset they construct an episode as follows:
 2. Sample a set of classes C from D, and assign to train/val/test splits
 3. Sample support and query examples for each class in C
 
-**Sampling Classes:** For ImageNet we sample a non-leaf node, and take the leaf nodes spanned by the given node. The larger the height of non-leaf node and the leaf node, the more coarse-grained the classification becomes.
-For Omniglot, we uniformly sample an alphabet for each train/val/test split. Then we uniformly sample "way" number of characters as classes. This ensures that each episode contains examples from the same alphabet.
+**Sampling Classes:** For ImageNet they sample a non-leaf node, and take the leaf nodes spanned by the given node. The larger the height of non-leaf node and the leaf node, the more coarse-grained the classification becomes.
+For Omniglot, they uniformly sample an alphabet for each train/val/test split. Then they uniformly sample "way" number of characters as classes. This ensures that each episode contains examples from the same alphabet.
 
-**Sampling examples:** The query set if balanced (capped at 10), ensuring that we test equally on each class. Whereas the support set if imbalanced, allowing it to be more aligned with real-world imbalances across different classes. Support sets are constructred such that they exclude any image from the query set, and are capped at at most 100 per class. The total support set is capped at 500. Additionally, they randomly sample an integer from the (0, 1] interval and multiply the # of examples for a given class to yield the number of examples that can contribute to the support set. This is done such that they can study the sensitivity of how "few" examples the model has to learn from.
+**Sampling examples:** The query set if balanced (capped at 10), ensuring that they test equally on each class. Whereas the support set if imbalanced, allowing it to be more aligned with real-world imbalances across different classes. Support sets are constructred such that they exclude any image from the query set, and are capped at at most 100 per class. The total support set is capped at 500. Additionally, they randomly sample an integer from the (0, 1] interval and multiply the # of examples for a given class to yield the number of examples that can contribute to the support set. This is done such that they can study the sensitivity of how "few" examples the model has to learn from.
 
 ## Experiments
 **Non-episodic baselines:**  

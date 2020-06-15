@@ -27,14 +27,21 @@ MI maximization: various methods (CPC, DIM, CMC, AMDIM) that are all based upon 
 
 ## Proposed Approach
 
-1. Data augmentation: using graph diffusion, they sample graph and create a different view on the same graph that has high correlation with the original.
+1. Data augmentation with graph diffusion, followed by subsampling: This creates different views on the same graph where each is highly correlated with other views.
 
 2. A GNN for each graph view, followed by a shared MLP, outputting node representations.
 
-3. A graph pooling layer followed by a shared MLP using node representations to output graph representations
+3. A graph pooling layer followed by a shared MLP using node representations to output graph representations (they use a JK-Net style concatenation of node representations across layers)
 
 4. Use discriminator to contrast node representation from one view with a graph representation from another view.
 
+5. Finally, at inference, just sum representations across views
+
+Key points:
+- adjacency matrix (local view) is transformed to a diffusion matrix (global view). Maximizing agreement between the two allows to enrich representations with both local and global information.
+
 ## Experiments
 
-## Thoughts
+- MUTAG, PTC, Reddit-Binary, Reddit, IMDB-Binary, IMDB-Multi for graph classification
+- Citeseer, Cora, Pubmed citation networks for node classification
+

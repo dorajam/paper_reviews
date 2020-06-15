@@ -23,9 +23,17 @@ representations of substructures of different scales (e.g., nodes, edges, triang
 Graph Diffusion Networks (Klicpera et al, 2019): they use graph diffusion to allow messages to pass through higher-order neighborhoods at each massage passing step (layer).
 This is in contrast to how commonly used GNNs perform message-passing, where only one-hop neighbors' messages are passed at a time.
 
+MI maximization: various methods (CPC, DIM, CMC, AMDIM) that are all based upon the idea that an encoder function should be such that it maximizes the mutual information between the learnt representation and the input.
+
 ## Proposed Approach
 
+1. Data augmentation: using graph diffusion, they sample graph and create a different view on the same graph that has high correlation with the original.
 
+2. A GNN for each graph view, followed by a shared MLP, outputting node representations.
+
+3. A graph pooling layer followed by a shared MLP using node representations to output graph representations
+
+4. Use discriminator to contrast node representation from one view with a graph representation from another view.
 
 ## Experiments
 
